@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bachillerato Técnico - UE Padre Jorge Abiatar Quevedo Figueroa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header animado */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            to { left: 100%; }
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* Sección Hero */
+        .hero {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #f5576c;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Sección de materias */
+        .materias {
+            padding: 4rem 2rem;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #667eea;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .materias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .materia-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+
+        .materia-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .materia-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .materia-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        /* Horario */
+        .horario {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .horario-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 2rem auto;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .horario-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .horario-time {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .share-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .share-whatsapp {
+            background: #25D366;
+        }
+
+        .share-whatsapp:hover {
+            background: #1da851;
+            transform: scale(1.05);
+        }
+
+        .share-facebook {
+            background: #1877f2;
+        }
+
+        .share-facebook:hover {
+            background: #145dbf;
+            transform: scale(1.05);
+        }
+
+        .social-feeds {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-feed {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            min-height: 500px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-feed h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            color: #f093fb;
+        }
+
+        .social-embed {
+            width: 100%;
+            height: 480px;
+            border: none;
+            border-radius: 10px;
+            background: white;
+        }
+
+        .matricula-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #4fc3f7;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .matricula-link:hover {
+            text-decoration: underline;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.8;
+        }
+
+        /* Animaciones */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .social-embed {
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>🎓 Bachillerato Técnico</h1>
+            <p class="subtitle">Unidad Educativa Fiscomisional "Padre Jorge Abiatar Quevedo Figueroa"</p>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2 class="float-animation">¡Transforma tu Futuro Digital!</h2>
+            <p>Prepárate para el mundo tecnológico con nuestro programa de Bachillerato Técnico de excelencia</p>
+            <a href="#materias" class="cta-button">Descubre Más</a>
+        </div>
+    </section>
+
+    <section id="materias" class="materias">
+        <div class="container">
+            <h2 class="section-title">Nuestras Materias Especializadas</h2>
+            <div class="materias-grid">
+                <div class="materia-card">
+                    <div class="materia-icon">💻</div>
+                    <h3>Aplicaciones Ofimáticas Locales y en Línea</h3>
+                    <p>Domina las herramientas esenciales de productividad, desde Microsoft Office hasta Google Workspace, preparándote para cualquier entorno profesional.</p>
+                </div>
+
+                <div class="materia-card">
+                    <div class="materia-icon">🌐</div>
+                    <h3>Sistemas Operativos y Redes</h3>
+                    <p>Aprende a gestionar Windows, Linux y configurar redes empresariales. Conviértete en experto en infraestructura tecnológica.</p>
+                </div>
+
+                <div class="materia-card">
+                    <div class="materia-icon">⚡</div>
+                    <h3>Programación y Base de Datos</h3>
+                    <p>Desarrolla soluciones innovadoras con lenguajes modernos y gestiona datos eficientemente con SQL y tecnologías actuales.</p>
+                </div>
+
+                <div class="materia-card">
+                    <div class="materia-icon">🔧</div>
+                    <h3>Soporte Técnico</h3>
+                    <p>Resuelve problemas de hardware y software como un profesional. Aprende diagnóstico, mantenimiento y reparación de equipos.</p>
+                </div>
+
+                <div class="materia-card">
+                    <div class="materia-icon">🎨</div>
+                    <h3>Diseño y Desarrollo Web</h3>
+                    <p>Crea sitios web impresionantes con HTML, CSS, JavaScript y frameworks modernos. Da vida a tus ideas en internet.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="horario">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Horario de Clases</h2>
+            <div class="horario-box">
+                <h3>⏰ Jornada Matutina</h3>
+                <div class="horario-time">7:15 AM - 1:45 PM</div>
+                <p style="font-size: 1.1rem;">Lunes a Viernes | Formación intensiva y práctica</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div>
+                    <h3>📍 Ubicación</h3>
+                    <p>Unidad Educativa Fiscomisional<br>"Padre Jorge Abiatar Quevedo Figueroa"</p>
+                    <p style="margin-top: 1rem; opacity: 0.8;">Formando líderes tecnológicos del mañana</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="https://runachay.ec/jorgeabiatar" target="_blank" class="matricula-link">🔗 Matricúlate aquí</a>
+                    </p>
+                </div>
+
+                <div>
+                    <h3>🔗 Comparte con tus amigos</h3>
+                    <div class="share-buttons">
+                        <a href="https://wa.me/?text=¡Descubre%20el%20Bachillerato%20Técnico%20de%20la%20UE%20Padre%20Jorge%20Abiatar!%20🎓%0AMaterias%3A%20Programación%2C%20Redes%2C%20Desarrollo%20Web%2C%20Soporte%20Técnico.%0AHorario%3A%207%3A15%20AM%20-%201%3A45%20PM%20(Lunes%20a%20Viernes).%0A🔗%20Matrículas%3A%20https%3A%2F%2Frunachay.ec%2Fjorgeabiatar" target="_blank" class="share-btn share-whatsapp">
+                            📱 WhatsApp
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.facebook.com/jorgeabiatar.quevedofigueroa" target="_blank" class="share-btn share-facebook">
+                            👍 Facebook
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="text-align: center; margin: 2rem 0 1rem;">📱 Síguenos en Redes Sociales</h3>
+            <div class="social-feeds">
+                <div class="social-feed">
+                    <h4>📘 Facebook</h4>
+                    <iframe 
+                        class="social-embed"
+                        src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjorgeabiatar.quevedofigueroa&amp;tabs=timeline&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true"
+                        scrolling="yes"
+                        frameborder="0"
+                        allowfullscreen="true"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+                    </iframe>
+                </div>
+
+                <div class="social-feed">
+                    <h4>📷 Instagram</h4>
+                    <iframe 
+                        class="social-embed"
+                        src="https://www.instagram.com/uef_padre_jorge_abiatar/embed"
+                        frameborder="0"
+                        scrolling="yes"
+                        allowtransparency="true">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 UE Fiscomisional "Padre Jorge Abiatar Quevedo Figueroa" - Bachillerato Técnico</p>
+                <p>Innovación y Excelencia Educativa</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Animación de aparición al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.materia-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
